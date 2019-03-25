@@ -91,7 +91,7 @@ var PlaylistTable = React.createClass({
           "tracks": {
             "href": "https://api.spotify.com/v1/me/tracks",
             "limit": 50,
-            "total": 2500 // TODO: get rid of hard-coded library size
+            "total": window.localStorage && window.localStorage.getItem("librarySize") ? window.localStorage.getItem("librarySize") : 2500 // TODO: get rid of static library size
           },
           "uri": "spotify:user:" + userId + ":saved"
         });
@@ -275,7 +275,7 @@ var PlaylistsExporter = {
           "tracks": {
             "href": "https://api.spotify.com/v1/me/tracks",
             "limit": 50,
-            "total": 2500 // TODO: get rid of hard-coded library size
+            "total": window.localStorage && window.localStorage.getItem("librarySize") ? window.localStorage.getItem("librarySize") : 2500 // TODO: get rid of static library size
           },
         });
 

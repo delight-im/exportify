@@ -14,6 +14,14 @@ Click “Get started”, grant Exportify *read-only* access to your playlists an
 
 Click “Export all” to save a ZIP file containing one CSV file for each playlist in your account. This may take a while when many (large) playlists exist.
 
+### Large libraries
+
+If you have a large number of items in your “Saved Tracks”, i.e. more than 2500 entries, you can change the limit on the number of tracks to export by executing the following piece of JavaScript in the console of your browser’s developer tools:
+
+```javascript
+window.localStorage.setItem("librarySize", 3141);
+```
+
 ### Re-importing playlists
 
 Once playlists are saved, it’s also pretty straightforward to re-import them into Spotify. Open up an exported CSV file in Excel or LibreOffice Calc, for example, then select and copy the `spotify:track:xxx` URIs. Finally, create a playlist in Spotify and paste in the URIs.
