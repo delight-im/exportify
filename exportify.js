@@ -55,13 +55,8 @@ var PlaylistTable = React.createClass({
     window.Helpers.apiCall("https://api.spotify.com/v1/me", this.props.access_token).then(function(response) {
       userId = response.id;
 
-      // Show starred playlist if viewing first page
       if (firstPage) {
         return $.when.apply($, [
-          window.Helpers.apiCall(
-            "https://api.spotify.com/v1/users/" + userId + "/starred",
-            this.props.access_token
-          ),
           window.Helpers.apiCall(
             "https://api.spotify.com/v1/users/" + userId + "/playlists",
             this.props.access_token
@@ -244,13 +239,7 @@ var PlaylistsExporter = {
       var limit = 20;
       var userId = response.id;
 
-      // Initialize requests with starred playlist
-      var requests = [
-        window.Helpers.apiCall(
-          "https://api.spotify.com/v1/users/" + userId + "/starred",
-          access_token
-        )
-      ];
+      var requests = [];
 
       // Add other playlists
       for (var offset = 0; offset < playlistCount; offset = offset + limit) {
