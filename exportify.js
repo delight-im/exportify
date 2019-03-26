@@ -91,7 +91,8 @@ var PlaylistTable = React.createClass({
           "tracks": {
             "href": "https://api.spotify.com/v1/me/tracks",
             "limit": 50,
-            "total": window.localStorage && window.localStorage.getItem("librarySize") ? window.localStorage.getItem("librarySize") : 2500 // TODO: get rid of static library size
+            "total": window.localStorage && window.localStorage.getItem("librarySize") ? window.localStorage.getItem("librarySize") : 2500, // TODO: get rid of static library size
+            "totalIsEstimate": true
           },
           "uri": "spotify:user:" + userId + ":saved"
         });
@@ -180,7 +181,7 @@ var PlaylistRow = React.createClass({
         <td>{this.renderIcon(playlist)}</td>
         <td><a href={playlist.uri}>{playlist.name}</a></td>
         <td><a href={playlist.owner.uri}>{playlist.owner.id}</a></td>
-        <td>{playlist.tracks.total}</td>
+        <td>{playlist.tracks.totalIsEstimate ? "" : playlist.tracks.total}</td>
         <td>{this.renderTickCross(playlist.public)}</td>
         <td>{this.renderTickCross(playlist.collaborative)}</td>
         <td className="text-right"><button className="btn btn-default btn-xs btn-success" type="submit" onClick={this.exportPlaylist}><span className="glyphicon glyphicon-save"></span> Export</button></td>
@@ -275,7 +276,8 @@ var PlaylistsExporter = {
           "tracks": {
             "href": "https://api.spotify.com/v1/me/tracks",
             "limit": 50,
-            "total": window.localStorage && window.localStorage.getItem("librarySize") ? window.localStorage.getItem("librarySize") : 2500 // TODO: get rid of static library size
+            "total": window.localStorage && window.localStorage.getItem("librarySize") ? window.localStorage.getItem("librarySize") : 2500, // TODO: get rid of static library size
+            "totalIsEstimate": true
           },
         });
 
